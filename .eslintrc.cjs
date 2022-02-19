@@ -15,7 +15,7 @@ const root = {
     'max-len': ['error', 80, 2, {
       ignoreUrls: true,
       ignoreComments: false,
-      ignoreRegExpLiterals: true,
+      ignoreRegExpLiterals: false,
       ignoreStrings: false,
       ignoreTemplateLiterals: true,
     }],
@@ -50,7 +50,7 @@ const core = {
     'max-len': ['error', 80, 2, {
       ignoreUrls: true,
       ignoreComments: false,
-      ignoreRegExpLiterals: true,
+      ignoreRegExpLiterals: false,
       ignoreStrings: false,
       ignoreTemplateLiterals: true,
     }],
@@ -89,7 +89,7 @@ const test = {
     'max-len': ['error', 80, 2, {
       ignoreUrls: true,
       ignoreComments: false,
-      ignoreRegExpLiterals: true,
+      ignoreRegExpLiterals: false,
       ignoreStrings: false,
       ignoreTemplateLiterals: true,
     }],

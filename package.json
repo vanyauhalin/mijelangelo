@@ -7,7 +7,9 @@
     "lint-comment": "commitlint --edit $1",
     "lint-core": "eslint packages/core/src/**/*.ts",
     "lint-root": "eslint ./*.cjs",
-    "lint-staged": "lint-staged"
+    "lint-staged": "lint-staged",
+    "lint-test": "eslint test/**/*.ts",
+    "test-core": "uvu -r tsm test/core"
   },
   "devDependencies": {
     "@commitlint/cli": "^16.2.1",
@@ -20,6 +22,8 @@
     "eslint-plugin-import": "^2.25.4",
     "husky": "^7.0.4",
     "lint-staged": "^12.3.4",
-    "typescript": "^4.5.5"
+    "tsm": "^2.2.1",
+    "typescript": "^4.5.5",
+    "uvu": "^0.5.3"
   }
 }

@@ -55,7 +55,45 @@ const core = {
       ignoreTemplateLiterals: true,
     }],
     'no-underscore-dangle': 'off',
-    'sort-imports': ['warn', {
+    'sort-imports': ['error', {
+      ignoreDeclarationSort: true,
+    }],
+  },
+};
+
+/**
+ * @type {import('eslint').Linter.ConfigOverride}
+ */
+const test = {
+  files: 'test/**/*.ts',
+  env: {
+    node: true,
+    mocha: true,
+  },
+  extends: [
+    'airbnb-base',
+    'airbnb-typescript/base',
+  ],
+  parser: '@typescript-eslint/parser',
+  parserOptions: {
+    ecmaVersion: 2022,
+    project: 'test/tsconfig.json',
+    sourceType: 'module',
+  },
+  rules: {
+    'import/order': ['error', {
+      alphabetize: {
+        order: 'asc',
+      },
+    }],
+    'max-len': ['error', 80, 2, {
+      ignoreUrls: true,
+      ignoreComments: false,
+      ignoreRegExpLiterals: true,
+      ignoreStrings: false,
+      ignoreTemplateLiterals: true,
+    }],
+    'sort-imports': ['error', {
       ignoreDeclarationSort: true,
     }],
   },
@@ -69,5 +107,6 @@ module.exports = {
   overrides: [
     root,
     core,
+    test,
   ],
 };

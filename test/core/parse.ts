@@ -17,4 +17,10 @@ test('parse simple html element', () => {
   ]);
 });
 
+test('parse single html element', () => {
+  equal(parse('<div />'), [new Element({
+    tag: 'div',
+  })]);
+});
+
 test.run();

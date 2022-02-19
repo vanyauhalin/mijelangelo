@@ -1,0 +1,4 @@
+{
+  "./*.cjs": "pnpm lint-root",
+  "packages/core/src/**/*.ts": "pnpm lint-core"
+}

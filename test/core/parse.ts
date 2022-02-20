@@ -28,6 +28,17 @@ test('parse simple html element with attributes', () => {
   ]);
 });
 
+test('parse simple web-component', () => {
+  equal(parse('<web-component></web-component>'), [
+    new Element({
+      tag: 'web-component',
+    }),
+    new Element({
+      tag: 'web-component',
+    }),
+  ]);
+});
+
 test('parse single html element', () => {
   equal(parse('<div />'), [new Element({
     tag: 'div',

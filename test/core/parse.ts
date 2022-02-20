@@ -29,9 +29,11 @@ test('parse simple html element with attributes', () => {
 });
 
 test('parse single html element', () => {
-  equal(parse('<div />'), [new Element({
-    tag: 'div',
-  })]);
+  equal(parse('<div />'), [
+    new Element({
+      tag: 'div',
+    }),
+  ]);
 });
 
 test('parse simple web-component', () => {

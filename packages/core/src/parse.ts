@@ -2,7 +2,7 @@ import { Delimiter } from './delimiter';
 import { Element } from './element';
 import { joinRegExps } from './utils';
 
-export function parse(content?: string) {
+export function parse(content?: string): (Element | Delimiter)[] {
   if (!content) {
     throw new Error('Content must be a string');
   }

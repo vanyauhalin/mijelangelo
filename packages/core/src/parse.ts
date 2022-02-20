@@ -1,29 +1,45 @@
+import { Delimiter } from './delimiter';
 import { Element } from './element';
+import { joinRegExps } from './utils';
 
 export function parse(content?: string) {
   if (!content) {
     throw new Error('Content must be a string');
   }
 
-  const regexp = /<\/?(?<tag>[\w-]+)([^.>]+)?\/?>/g;
-  const rawElements = content.matchAll(regexp);
+  const tags = /(<\/?(?<tag>[\w-]+)([^.>]+)?\/?>)/;
+  const or = /|/;
+  const delimiters = /(?<delimiter>{%.+%})/;
+  const matchedTokens = content
+    .matchAll(joinRegExps([tags, or, delimiters], 'g'));
 
-  if (rawElements) {
-    const elements = [] as Element[];
+  if (matchedTokens) {
+    const parsedTokens = [] as (Element | Delimiter)[];
 
-    [...rawElements].forEach((rawElement) => {
-      if (rawElement.groups) {
-        const { tag } = rawElement.groups;
+    [...matchedTokens].forEach((matchedToken) => {
+      if (matchedToken.groups) {
+        const { delimiter, tag } = matchedToken.groups;
 
         if (tag) {
-          elements.push(new Element({
+          parsedTokens.push(new Element({
             tag,
           }));
+        }
+
+        if (delimiter) {
+          const open = delimiter.at(1);
+          const close = delimiter.at(-2);
+
+          if (open === '%' && close === '%') {
+            parsedTokens.push(new Delimiter({
+              type: 'statement',
+            }));
+          }
         }
       }
     });
 
-    return elements;
+    return parsedTokens;
   }
 
   throw new Error();

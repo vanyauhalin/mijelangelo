@@ -84,4 +84,12 @@ test('parse simple expression delimiter', () => {
   ]);
 });
 
+test('parse simple comment delimiter', () => {
+  equal(parse('{# ... #}'), [
+    new Delimiter({
+      type: 'comment',
+    }),
+  ]);
+});
+
 test.run();

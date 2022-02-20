@@ -1,4 +1,5 @@
-import { Element, parse } from '@mijelangelo/core/src/parse';
+import { Element } from '@mijelangelo/core/src/element';
+import { parse } from '@mijelangelo/core/src/parse';
 import { test } from 'uvu';
 import { equal, throws } from 'uvu/assert';
 

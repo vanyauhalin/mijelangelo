@@ -1,10 +1,4 @@
-export class Element {
-  tag: string;
-
-  constructor({ tag }: { tag: string }) {
-    this.tag = tag;
-  }
-}
+import { Element } from './element';
 
 export function parse(content?: string) {
   if (!content) {

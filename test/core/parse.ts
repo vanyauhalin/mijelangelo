@@ -17,6 +17,17 @@ test('parse simple html element', () => {
   ]);
 });
 
+test('parse simple html element with attributes', () => {
+  equal(parse('<div style="color: red"></div>'), [
+    new Element({
+      tag: 'div',
+    }),
+    new Element({
+      tag: 'div',
+    }),
+  ]);
+});
+
 test('parse single html element', () => {
   equal(parse('<div />'), [new Element({
     tag: 'div',

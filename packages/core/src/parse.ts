@@ -9,7 +9,7 @@ export function parse(content?: string) {
 
   const tags = /(<\/?(?<tag>[\w-]+)([^.>]+)?\/?>)/;
   const or = /|/;
-  const delimiters = /(?<delimiter>({%.+%})|({{.+}}))/;
+  const delimiters = /(?<delimiter>({%.+%})|({{.+}})|({#.+#}))/;
   const matchedTokens = content
     .matchAll(joinRegExps([tags, or, delimiters], 'g'));
 
@@ -39,6 +39,12 @@ export function parse(content?: string) {
           if (open === '{' && close === '}') {
             parsedTokens.push(new Delimiter({
               type: 'expression',
+            }));
+          }
+
+          if (open === '#' && close === '#') {
+            parsedTokens.push(new Delimiter({
+              type: 'comment',
             }));
           }
         }

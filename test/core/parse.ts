@@ -1,3 +1,4 @@
+import { Delimiter } from '@mijelangelo/core/src/delimiter';
 import { Element } from '@mijelangelo/core/src/element';
 import { parse } from '@mijelangelo/core/src/parse';
 import { test } from 'uvu';
@@ -63,6 +64,14 @@ test('parse single web-component', () => {
   equal(parse('<web-component />'), [
     new Element({
       tag: 'web-component',
+    }),
+  ]);
+});
+
+test('parse simple statement delimiter', () => {
+  equal(parse('{% ... %}'), [
+    new Delimiter({
+      type: 'statement',
     }),
   ]);
 });

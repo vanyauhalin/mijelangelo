@@ -76,4 +76,12 @@ test('parse simple statement delimiter', () => {
   ]);
 });
 
+test('parse simple expression delimiter', () => {
+  equal(parse('{{ ... }}'), [
+    new Delimiter({
+      type: 'expression',
+    }),
+  ]);
+});
+
 test.run();

@@ -92,4 +92,18 @@ test('parse simple comment delimiter', () => {
   ]);
 });
 
+test('parse simple html element with simple statement delimiter', () => {
+  equal(parse('<div>{% ... %}</div>'), [
+    new Element({
+      tag: 'div',
+    }),
+    new Delimiter({
+      type: 'statement',
+    }),
+    new Element({
+      tag: 'div',
+    }),
+  ]);
+});
+
 test.run();

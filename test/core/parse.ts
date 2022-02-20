@@ -45,6 +45,17 @@ test('parse simple web-component', () => {
   ]);
 });
 
+test('parse simple web-component with attributes', () => {
+  equal(parse('<web-component style="color: red"></web-component>'), [
+    new Element({
+      tag: 'web-component',
+    }),
+    new Element({
+      tag: 'web-component',
+    }),
+  ]);
+});
+
 test('parse single web-component', () => {
   equal(parse('<web-component />'), [
     new Element({

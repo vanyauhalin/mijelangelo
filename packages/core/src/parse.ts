@@ -11,7 +11,7 @@ export function parse(content?: string) {
     throw new Error('Content must be a string');
   }
 
-  const regexp = /<\/?(?<tag>\w+)\s?\/?>/g;
+  const regexp = /<\/?(?<tag>\w+)([^.>]+)?\/?>/g;
   const rawElements = content.matchAll(regexp);
 
   if (rawElements) {

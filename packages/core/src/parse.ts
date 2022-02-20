@@ -11,15 +11,16 @@ export function parse(content?: string) {
     throw new Error('Content must be a string');
   }
 
-  const rawElements = content.matchAll(/<(?<open>\w+)>|<\/(?<close>\w+)>/g);
+  const regexp = /<(?<open>\w+)>|<\/(?<close>\w+)>|<(?<single>\w+)\s\/>/g;
+  const rawElements = content.matchAll(regexp);
 
   if (rawElements) {
     const elements = [] as Element[];
 
     [...rawElements].forEach((rawElement) => {
       if (rawElement.groups) {
-        const { open, close } = rawElement.groups;
-        const tag = open || close;
+        const { open, close, single } = rawElement.groups;
+        const tag = open || close || single;
 
         if (tag) {
           elements.push(new Element({
